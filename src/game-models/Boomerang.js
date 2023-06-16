@@ -6,6 +6,7 @@ class Boomerang {
   constructor(trackLength) {
     this.generateSkinAlco();
     this.position = -1;
+    this.position2 = undefined;
     this.trackLength = trackLength;
   }
 
@@ -16,20 +17,20 @@ class Boomerang {
 
 
   fly() {
-    const distance = 5; // Устанавливаем дистанцию полета бумеранга
+    const distance = 8; // Устанавливаем дистанцию полета бумеранга
 
     // Запускаем бумеранг на заданное расстояние
     for (let i = 1; i <= distance; i++) {
-      setTimeout(() => this.moveRight(1), 100 * i);
+      setTimeout(() => this.moveRight(1), 50 * i);
     }
 
     // Возвращаем бумеранг на заданное расстояние
     for (let i = 1; i <= distance; i++) {
-      setTimeout(() => this.moveLeft(1), 100 * (distance + i));
+      setTimeout(() => this.moveLeft(1), 50 * (distance + i));
     }
 
     // Сбрасываем позицию бумеранга после возвращения
-    setTimeout(() => this.reset(), 100 * (distance * 2));
+    setTimeout(() => this.reset(), 50 * (distance * 2));
   }
 
   reset() {
@@ -39,11 +40,13 @@ class Boomerang {
   moveLeft(distance) {
     // Идём влево.
     this.position -= distance;
+    this.position2 -= distance;
   }
 
   moveRight(distance) {
     // Идём вправо.
     this.position += distance;
+    this.position2 += distance;
   }
 }
 
