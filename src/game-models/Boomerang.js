@@ -4,10 +4,16 @@
 
 class Boomerang {
   constructor(trackLength) {
-    this.skin = '🌀';
+    this.generateSkinAlco();
     this.position = -1;
     this.trackLength = trackLength;
   }
+
+  generateSkinAlco() {
+    const skinsAlco = ['🍾', '🍺', '🥃', '🍷', '🍸'];
+    this.skin = skinsAlco[Math.floor(Math.random() * skinsAlco.length)];
+  }
+
 
   fly() {
     const distance = 5; // Устанавливаем дистанцию полета бумеранга
