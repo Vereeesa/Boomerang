@@ -2,8 +2,8 @@
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
 
-
 const player = require("play-sound")((opts = {}));
+
 
 const Hero = require("./game-models/Hero");
 const Enemy = require("./game-models/Enemy");
@@ -92,7 +92,7 @@ class Game {
       }
 
       this.view.render(this.track);
-    }, 100); // Вы можете настроить частоту обновления игрового цикла
+    }, 70); // Вы можете настроить частоту обновления игрового цикла
   }
 
   async handleCollisions() {
@@ -105,19 +105,21 @@ class Game {
       this.hero.liveCount -= 1;
 
       if (this.hero.liveCount === 2) {
-        this.hero.live = "Жизни: 🐳🐳🦜";
+        this.hero.live = "Жизни: 💛💛💙";
       }
       if (this.hero.liveCount === 1) {
-        this.hero.live = "Жизни: 🐳🦜🦜";
+        this.hero.live = "Жизни: 💛💙💙";
       }
       if (this.hero.liveCount === 0) {
-        this.hero.live = "Жизни:🦜🦜🦜";
+        this.hero.live = "Жизни:💙💙💙";
+        player.play('./src/sounds/Когда напился.wav')
         this.hero.die();
       }
     }
 
     if (this.boomerang.position >= this.enemy.position) {
       this.enemy.die();
+      player.play('./src/sounds/Момент попадания.wav');
       this.hero.scores += 1;
       // Обнуляем позицию бумеранга после столкновения с врагом
       this.boomerang.position = undefined;
@@ -126,6 +128,7 @@ class Game {
 
     if (this.boomerang.position2 >= this.newEnemy.position2) {
       this.newEnemy.die();
+      player.play('./src/sounds/Момент попадания.wav');
       this.hero.scores += 1;
       // Обнуляем позицию бумеранга после столкновения с врагом
       this.boomerang.position2 = undefined;
