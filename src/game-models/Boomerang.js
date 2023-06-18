@@ -38,16 +38,16 @@ class Boomerang {
     this.position2 = undefined;
   }
 
-  moveLeft(distance) {
+  moveLeft() {
     // Идём влево.
-    this.position -= distance;
-    this.position2 -= distance;
+    this.position -= 1;
+    this.position2 -= 1;
   }
 
-  moveRight(distance) {
+  moveRight() {
     // Идём вправо.
-    this.position += distance;
-    this.position2 += distance;
+    this.position += 1;
+    this.position2 += 1;
   }
 }
 

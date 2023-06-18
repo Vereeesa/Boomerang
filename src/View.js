@@ -5,11 +5,16 @@ class View {
     this.game = game;
   }
 
-  render() {
-    const yourTeamName = 'Elbrus';
+  async render() {
+    console.clear();
+
+    const yourTeamName = "Vera's team";
 
     // Тут всё рисуем.
-    console.clear();
+    console.log(
+      `${this.game.hero.live}\nТекущий счет: ${this.game.hero.scores}\n`
+    );
+    console.log('\n\n')
     console.log(this.game.track.join(''));
     console.log('\n\n')
     console.log(this.game.track2.join('____'));
@@ -18,5 +23,6 @@ class View {
     console.log(`Created by "${yourTeamName}" with love`);
   }
 }
+
 
 module.exports = View;

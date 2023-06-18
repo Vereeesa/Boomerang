@@ -1,11 +1,15 @@
 // Наш герой.
+const player = require('play-sound')((opts = {}));
 
 class Hero {
-  constructor({ position, boomerang, position2 }) {
+  constructor({ position, boomerang, position2, scores = 0}) {
     this.skin = "💃";
     this.position = position;
     this.position2 = position2;
     this.boomerang = boomerang;
+    this.live = 'Жизни: 🐳🐳🐳';
+    this.liveCount = 3;
+    this.scores = scores;
   }
 
   moveLeft() {
