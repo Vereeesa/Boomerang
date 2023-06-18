@@ -1,7 +1,6 @@
 // Наш герой.
 
 class Hero {
-
   constructor({ position, boomerang, position2 }) {
     this.skin = "💃";
     this.position = position;
@@ -23,16 +22,18 @@ class Hero {
 
   moveUp() {
     //  идем вверх
-    this.position2 >= 0
-      ? ((this.position = this.position2), (this.position2 = undefined))
-      : null;
+    if (this.position2 >= 0) {
+      this.position = this.position2;
+      this.position2 = undefined;
+    }
   }
 
   moveDown() {
     // идем вниз
-    this.position >= 0
-      ? ((this.position2 = this.position), (this.position = undefined))
-      : null;
+    if (this.position >= 0) {
+      this.position2 = this.position;
+      this.position = undefined;
+    }
   }
 
   attack() {
@@ -49,7 +50,7 @@ class Hero {
   }
 
   die() {
-    this.skin = '💀';
+    this.skin = "💀";
     console.log(`
     ██╗   ██╗ ██████╗ ██╗   ██╗     █████╗ ██████╗ ███████╗    ██████╗ ██████╗ ██╗   ██╗███╗   ██╗██╗  ██╗██╗
     ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔══██╗██╔══██╗██╔════╝    ██╔══██╗██╔══██╗██║   ██║████╗  ██║██║ ██╔╝██║
