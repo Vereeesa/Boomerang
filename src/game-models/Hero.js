@@ -7,7 +7,7 @@ class Hero {
     this.position = position;
     this.position2 = position2;
     this.boomerang = boomerang;
-    this.live = 'Жизни: 🐳🐳🐳';
+    this.live = 'Жизни: 💛💛💛';
     this.liveCount = 3;
     this.scores = scores;
   }
@@ -51,6 +51,7 @@ class Hero {
       this.boomerang.position = undefined;
     }
     this.boomerang.fly();
+    player.play('./src/sounds/Момент броска .wav');
   }
 
   die() {
