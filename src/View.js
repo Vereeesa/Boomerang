@@ -17,7 +17,7 @@ class View {
     console.log('\n\n')
     console.log(this.game.track.join(''));
     console.log('\n\n')
-    console.log(this.game.track2.join('____'));
+    console.log(this.game.track2.join(''));
     console.log('\n\n');
     console.log('\n\n');
     console.log(`Created by "${yourTeamName}" with love`);
