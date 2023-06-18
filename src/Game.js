@@ -2,6 +2,7 @@
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
 
+
 const player = require("play-sound")((opts = {}));
 
 const Hero = require("./game-models/Hero");
