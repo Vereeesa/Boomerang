@@ -4,17 +4,17 @@
 
 class Boomerang {
   constructor(trackLength) {
-    this.generateSkinAlco();
-    this.position = -1;
+    this.position = undefined;
     this.position2 = undefined;
     this.trackLength = trackLength;
+    this.skin = "🍾";
+    this.generateSkinAlco();
   }
 
   generateSkinAlco() {
-    const skinsAlco = ['🍾', '🍺', '🥃', '🍷', '🍸'];
+    const skinsAlco = ["🍾", "🍺", "🥃", "🍷", "🍸"];
     this.skin = skinsAlco[Math.floor(Math.random() * skinsAlco.length)];
   }
-
 
   fly() {
     const distance = 8; // Устанавливаем дистанцию полета бумеранга
@@ -34,19 +34,20 @@ class Boomerang {
   }
 
   reset() {
-    this.position = -1; // Сброс позиции бумеранга
+    this.position = undefined; // Сброс позиции бумеранга
+    this.position2 = undefined;
   }
 
-  moveLeft(distance) {
+  moveLeft() {
     // Идём влево.
-    this.position -= distance;
-    this.position2 -= distance;
+    this.position -= 1;
+    this.position2 -= 1;
   }
 
-  moveRight(distance) {
+  moveRight() {
     // Идём вправо.
-    this.position += distance;
-    this.position2 += distance;
+    this.position += 1;
+    this.position2 += 1;
   }
 }
 

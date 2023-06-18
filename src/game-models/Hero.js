@@ -1,12 +1,15 @@
 // Наш герой.
+const player = require('play-sound')((opts = {}));
 
 class Hero {
-
-  constructor({ position, boomerang, position2 }) {
+  constructor({ position, boomerang, position2, scores = 0}) {
     this.skin = "💃";
     this.position = position;
     this.position2 = position2;
     this.boomerang = boomerang;
+    this.live = 'Жизни: 🐳🐳🐳';
+    this.liveCount = 3;
+    this.scores = scores;
   }
 
   moveLeft() {
@@ -23,16 +26,18 @@ class Hero {
 
   moveUp() {
     //  идем вверх
-    this.position2 >= 0
-      ? ((this.position = this.position2), (this.position2 = undefined))
-      : null;
+    if (this.position2 >= 0) {
+      this.position = this.position2;
+      this.position2 = undefined;
+    }
   }
 
   moveDown() {
     // идем вниз
-    this.position >= 0
-      ? ((this.position2 = this.position), (this.position = undefined))
-      : null;
+    if (this.position >= 0) {
+      this.position2 = this.position;
+      this.position = undefined;
+    }
   }
 
   attack() {
@@ -49,7 +54,7 @@ class Hero {
   }
 
   die() {
-    this.skin = '💀';
+    this.skin = "💀";
     console.log(`
     ██╗   ██╗ ██████╗ ██╗   ██╗     █████╗ ██████╗ ███████╗    ██████╗ ██████╗ ██╗   ██╗███╗   ██╗██╗  ██╗██╗
     ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔══██╗██╔══██╗██╔════╝    ██╔══██╗██╔══██╗██║   ██║████╗  ██║██║ ██╔╝██║
