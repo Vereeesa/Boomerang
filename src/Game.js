@@ -105,21 +105,19 @@ class Game {
       this.hero.liveCount -= 1;
 
       if (this.hero.liveCount === 2) {
-        this.hero.live = "Жизни: 💛💛💙";
+        this.hero.live = "Жизни: 🐳🐳🦜";
       }
       if (this.hero.liveCount === 1) {
-        this.hero.live = "Жизни: 💛💙💙";
+        this.hero.live = "Жизни: 🐳🦜🦜";
       }
       if (this.hero.liveCount === 0) {
-        this.hero.live = "Жизни:💙💙💙";
-        player.play('./src/sounds/Когда напился.wav')
+        this.hero.live = "Жизни:🦜🦜🦜";
         this.hero.die();
       }
     }
 
     if (this.boomerang.position >= this.enemy.position) {
       this.enemy.die();
-      player.play('./src/sounds/Момент попадания.wav');
       this.hero.scores += 1;
       // Обнуляем позицию бумеранга после столкновения с врагом
       this.boomerang.position = undefined;
@@ -128,7 +126,6 @@ class Game {
 
     if (this.boomerang.position2 >= this.newEnemy.position2) {
       this.newEnemy.die();
-      player.play('./src/sounds/Момент попадания.wav');
       this.hero.scores += 1;
       // Обнуляем позицию бумеранга после столкновения с врагом
       this.boomerang.position2 = undefined;
