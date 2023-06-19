@@ -2,7 +2,7 @@ const { Leader, sequelize } = require('./models')
 
 async function main() {
 await Leader.create({
-  name: 'Bomzhara',
+  name: 'Gamer',
   scores: 100,
   position: 10,
 })

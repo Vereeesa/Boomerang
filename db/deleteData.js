@@ -1,7 +1,8 @@
 const { Leader, sequelize } = require('./models/');
 
 async function main() {
-  await Leader.update({position: false}, {where: {}})
+  const gamer = await Leader.findOne({where: {name: 'Gamer'}});
+  await gamer.destroy()
 }
 
 main();
