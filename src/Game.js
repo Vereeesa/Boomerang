@@ -1,14 +1,15 @@
 // Импортируем всё необходимое.
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
+const readlineSync = require('readline-sync');
+const player = require('play-sound')((opts = {}));
+const { Leader } = require('../db/models');
 
-const player = require("play-sound")((opts = {}));
-
-const Hero = require("./game-models/Hero");
-const Enemy = require("./game-models/Enemy");
-const View = require("./View");
-const Boomerang = require("./game-models/Boomerang");
-
+const Hero = require('./game-models/Hero');
+const Enemy = require('./game-models/Enemy');
+const View = require('./View');
+const Boomerang = require('./game-models/Boomerang');
+const saveInDB = require('./createData');
 // Основной класс игры.
 // Тут будут все настройки, проверки, запуск.
 
@@ -24,16 +25,16 @@ class Game {
     this.enemy = new Enemy(trackLength);
     this.newEnemy = new Enemy(trackLength);
     this.view = new View(this);
-    this.track = [""];
-    this.track2 = [""];
+    this.track = [''];
+    this.track2 = [''];
     this.regenerateTrack();
   }
 
   regenerateTrack() {
     // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
-    this.track = new Array(this.trackLength).fill(" ");
-    this.track[0] = "🏪";
+    this.track = new Array(this.trackLength).fill(' ');
+    this.track[0] = '🏪';
     this.track[this.enemy.position] = this.enemy.skin; // Добавьте эту строку
 
     if (this.hero.position >= 0) {
@@ -47,8 +48,8 @@ class Game {
       this.track[this.hero.boomerang.position] = this.hero.boomerang.skin;
     }
 
-    this.track2 = new Array(this.trackLength).fill(" ");
-    this.track2[0] = "🏪";
+    this.track2 = new Array(this.trackLength).fill(' ');
+    this.track2[0] = '🏪';
 
     if (this.hero.position2 >= 0) {
       this.track2[this.hero.position2] = this.hero.skin;
@@ -74,6 +75,12 @@ class Game {
   }
 
   play() {
+    // тут вводится имя
+    this.hero.name = readlineSync.question('\nВведи своё имя: ');
+    process.stdin.resume();
+    if (!this.hero.name) {
+      this.hero.name = 'Player';
+    }
     setInterval(() => {
       // Let's play!
       this.handleCollisions();
@@ -94,7 +101,7 @@ class Game {
       this.view.render(this.track);
     }, 70); // Вы можете настроить частоту обновления игрового цикла
   }
-
+  // тут считаются очки
   handleCollisions() {
     if (
       (this.hero.position >= this.enemy.position &&
@@ -105,15 +112,16 @@ class Game {
       this.hero.liveCount -= 1;
 
       if (this.hero.liveCount === 2) {
-        this.hero.live = "Жизни: 🖤🖤💙";
+        this.hero.live = 'Жизни: 🖤🖤💙';
       }
       if (this.hero.liveCount === 1) {
-        this.hero.live = "Жизни: 🖤💙💙";
+        this.hero.live = 'Жизни: 🖤💙💙';
       }
       if (this.hero.liveCount === 0) {
-        this.hero.live = "Жизни:💙💙💙";
-        player.play('./src/sounds/Когда напился.wav')
+        this.hero.live = 'Жизни:💙💙💙';
+        player.play('./src/sounds/Когда напился.wav');
         this.hero.die();
+        
       }
     }
 

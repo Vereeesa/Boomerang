@@ -1,4 +1,4 @@
-const { Leader, sequelize } = require('./models/');
+const { Leader, sequelize } = require('../db/models');
 
 async function main() {
   // const leaders = await Leader.findAll({
