@@ -1,5 +1,6 @@
 // Основной файл.
 // Запускает игру.
+const player = require('play-sound')((opts = {}));
 const Game = require('./src/Game');
 const runInteractiveConsole = require('./src/keyboard');
 
@@ -10,5 +11,5 @@ const game = new Game({
 
 // Запуск игры.
 game.play();
-
+player.play('./src/sounds/дураков деревня 2.mp3');
 runInteractiveConsole(game);
