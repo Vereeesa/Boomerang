@@ -22,11 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
-    position: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.INTEGER
-    },
   }, {
     sequelize,
     modelName: 'Leader',

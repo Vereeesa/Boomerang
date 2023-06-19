@@ -12,7 +12,7 @@ class View {
 
     // Тут всё рисуем.
     console.log(
-      `${this.game.hero.live}\nТекущий счет: ${this.game.hero.scores}\n`
+      `${this.game.hero.live}\nТекущий счет: ${this.game.hero.scores}\n Имя: ${this.game.hero.name}`
     );
     console.log('\n\n')
     console.log(this.game.track.join(''));

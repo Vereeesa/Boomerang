@@ -1,6 +1,6 @@
 // Основной файл.
 // Запускает игру.
-const player = require("play-sound")((opts = {}));
+const player = require('play-sound')((opts = {}));
 const Game = require('./src/Game');
 const runInteractiveConsole = require('./src/keyboard');
 
