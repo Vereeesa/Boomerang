@@ -4,10 +4,8 @@
 
 const player = require("play-sound")((opts = {}));
 
-
 const Hero = require("./game-models/Hero");
 const Enemy = require("./game-models/Enemy");
-// const Boomerang = require('./game-models/Boomerang');
 const View = require("./View");
 const Boomerang = require("./game-models/Boomerang");
 
@@ -26,8 +24,8 @@ class Game {
     this.enemy = new Enemy(trackLength);
     this.newEnemy = new Enemy(trackLength);
     this.view = new View(this);
-    this.track = [];
-    this.track2 = [];
+    this.track = [""];
+    this.track2 = [""];
     this.regenerateTrack();
   }
 
@@ -35,6 +33,7 @@ class Game {
     // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
     this.track = new Array(this.trackLength).fill(" ");
+    this.track[0] = "🏪";
     this.track[this.enemy.position] = this.enemy.skin; // Добавьте эту строку
 
     if (this.hero.position >= 0) {
@@ -49,6 +48,7 @@ class Game {
     }
 
     this.track2 = new Array(this.trackLength).fill(" ");
+    this.track2[0] = "🏪";
 
     if (this.hero.position2 >= 0) {
       this.track2[this.hero.position2] = this.hero.skin;
@@ -95,7 +95,7 @@ class Game {
     }, 70); // Вы можете настроить частоту обновления игрового цикла
   }
 
-  async handleCollisions() {
+  handleCollisions() {
     if (
       (this.hero.position >= this.enemy.position &&
         this.hero.position - this.enemy.position < 1) ||
@@ -105,10 +105,10 @@ class Game {
       this.hero.liveCount -= 1;
 
       if (this.hero.liveCount === 2) {
-        this.hero.live = "Жизни: ❤️❤️💙";
+        this.hero.live = "Жизни: 🖤🖤💙";
       }
       if (this.hero.liveCount === 1) {
-        this.hero.live = "Жизни: ❤️💙💙";
+        this.hero.live = "Жизни: 🖤💙💙";
       }
       if (this.hero.liveCount === 0) {
         this.hero.live = "Жизни:💙💙💙";

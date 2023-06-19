@@ -17,7 +17,7 @@ class Boomerang {
   }
 
   fly() {
-    const distance = 8; // Устанавливаем дистанцию полета бумеранга
+    const distance = 9; // Устанавливаем дистанцию полета бумеранга
 
     // Запускаем бумеранг на заданное расстояние
     for (let i = 1; i <= distance; i++) {
@@ -26,7 +26,7 @@ class Boomerang {
 
     // Возвращаем бумеранг на заданное расстояние
     for (let i = 1; i <= distance; i++) {
-      setTimeout(() => this.moveLeft(1), 50 * (distance + i));
+      setTimeout(() => this.moveLeft(1), 25 * (distance + i));
     }
 
     // Сбрасываем позицию бумеранга после возвращения
